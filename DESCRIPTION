@@ -13,4 +13,5 @@ Imports:
     tidyverse,
     magrittr,
     purrr, 
-    dplyr
+    dplyr,
+    AIscreenR

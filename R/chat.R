@@ -6,7 +6,7 @@
 #' @param model OpenAI's API models
 #'
 #' @return A dataframe containing the chosen message, temperature, model and the response from OpenAI's API models
-#' @import httr2 tidyverse magrittr purrr dplyr
+#' @import httr2 tidyverse magrittr purrr dplyr AIscreenR
 #' @export
 #'
 #' @examples
@@ -15,7 +15,7 @@
 chat <- function(message, temperature, model) {
   user_message <- list(list(role = "user", content = message))
   base_url <- "https://api.openai.com/v1"
-  api_key <- Sys.getenv("OPENAI_API_KEY")
+  api_key <- get_api_key()
   body <- list(model = model,
                messages = user_message,
                temperature = temperature)
