@@ -8,13 +8,8 @@
 #' @return A dataframe containing the chosen message, temperature, model and the response from OpenAI's API models
 #' @export
 #'
-#' @examples chat("What is an apple", 0.5, "gpt-3.5-turbo-0613")
-
-library(httr2)
-library(tidyverse)
-library(magrittr)
-library(purrr)
-library(dplyr)
+#' @examples
+#' chat("What is an apple", 0.5, "gpt-3.5-turbo-0613")
 
 chat <- function(message, temperature, model) {
   user_message <- list(list(role = "user", content = message))
