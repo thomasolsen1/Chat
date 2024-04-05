@@ -1,4 +1,16 @@
-# This is newer
+
+#' chat
+#'
+#' @param message The message sent to OpenAI
+#' @param temperature The sampling temperature, between 0 and 1. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. If set to 0, the model will use log probability to automatically increase the temperature until certain thresholds are hit. (https://platform.openai.com/docs/api-reference/audio)
+#' @param model OpenAI's API models
+#'
+#' @return A dataframe containing the chosen message, temperature, model and the response from OpenAI's API models
+#' @import httr2, tidyverse, magrittr, purr, dplyr
+#' @export
+#'
+#' @examples chat("What is an apple", 0.5, "gpt-3.5-turbo-0613")
+
 
 chat <- function(message, temperature, model) {
   user_message <- list(list(role = "user", content = message))
