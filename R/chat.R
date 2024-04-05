@@ -6,6 +6,7 @@
 #' @param model OpenAI's API models
 #'
 #' @return A dataframe containing the chosen message, temperature, model and the response from OpenAI's API models
+#' @import httr2, tidyverse, magrittr, purr, dplyr
 #' @export
 #'
 #' @examples
