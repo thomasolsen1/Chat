@@ -1,3 +1,5 @@
+# This is new
+
 chat <- function(message, temperature, model) {
   user_message <- list(list(role = "user", content = message))
   base_url <- "https://api.openai.com/v1"
