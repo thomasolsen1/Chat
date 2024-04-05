@@ -1,4 +1,4 @@
-# This is new
+# This is newer
 
 chat <- function(message, temperature, model) {
   user_message <- list(list(role = "user", content = message))
