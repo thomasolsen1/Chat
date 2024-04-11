@@ -1,3 +1,4 @@
+
 # Generate a mocked API key with 51 characters
 mocked_api_key <- paste(rep("x", 51), collapse = "")
 
