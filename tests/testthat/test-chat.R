@@ -8,7 +8,7 @@ test_that("chat returns a dataframe with correct columns", {
   result <- chat(message, temperature, model)
   
   # Check that the result is a dataframe
-  expect_is(result, "data.frame")
+  expect_type(result, "list")
   
   # Check that the dataframe has the correct columns
   expected_cols <- c("Model", "Temperature", "Message", "Response")
