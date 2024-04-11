@@ -21,4 +21,5 @@ chat
 }
 \examples{
 chat("What is an apple", 0.5, "gpt-3.5-turbo-0613")
+
 }

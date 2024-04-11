@@ -14,6 +14,7 @@ Imports:
     magrittr,
     purrr, 
     dplyr,
+    askpass,
 Suggests: 
     testthat (>= 3.0.0)
 Config/testthat/edition: 3

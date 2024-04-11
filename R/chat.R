@@ -16,9 +16,10 @@
 
 
 chat <- function(message, temperature, model) {
+  set_api_key()
   user_message <- list(list(role = "user", content = message))
   base_url <- "https://api.openai.com/v1"
-  api_key <- get_api_key()
+  api_key <- Sys.getenv("CHATGPT_KEY")
   body <- list(model = model,
                messages = user_message,
                temperature = temperature)
@@ -38,3 +39,7 @@ chat <- function(message, temperature, model) {
   result <- openai_chat_response$choices$message$content
   return(dplyr::bind_rows(data.frame(Model = model, Temperature = temperature, Message = message, Response = result)))
 }
+
+
+#################
+# library(usethis); library(roxygen2); library(devtools); library(testthat); library(askpass); library(httr2); library(purrr); library(dplyr); library(magrittr)
