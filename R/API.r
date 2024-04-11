@@ -11,6 +11,7 @@
 #' set_api_key("your_api_key_here", "MY_ENV_VAR")
 #'
 #' @importFrom askpass askpass
+#' @importFrom mockery mock
 #'
 #' @export
 

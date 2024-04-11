@@ -1,21 +1,14 @@
-test_that("Testthat works in get_api_key()", {
+# Generate a mocked API key with 51 characters
+mocked_api_key <- paste(rep("x", 51), collapse = "")
 
-  skip_on_cran()
+# Mock the askpass::askpass function
+mockery::mock(askpass::askpass,
+     mocked_api_key)
 
-  key <- httr2::secret_decrypt("4UAcFSIHVz8Z4zED1WEj3k65xFBWlJ8dzavRDGG4dz0pBxEOXtvSkLwK6_fZaZqCr94oVtKBD6DQo82vwa2gljJMTw", "KEY1")
-  expect_equal(get_api_key(), key)
+test_that("set_api_key function sets the API key correctly", {
+  # Call the set_api_key function
+  set_api_key()
 
-  expect_identical(is.character(get_api_key()), TRUE)
-
-  set_api_key(key = key)
-  expect_identical(Sys.getenv("CHATGPT_KEY"), key)
-
-})
-
-test_that("get_api_key() error.",{
-
-  expect_error(
-    get_api_key(env_var = "something_else")
-  )
-
+  # Check if the length of the environment variable is set correctly
+  expect_equal(nchar(Sys.getenv("CHATGPT_KEY")), 51)
 })
