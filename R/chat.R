@@ -6,11 +6,47 @@
 #' @param model OpenAI's API models
 #'
 #' @return A dataframe containing the chosen message, temperature, model and the response from OpenAI's API models
-#' @import httr2 tidyverse magrittr purrr dplyr AIscreenR
+#' @import tidyverse magrittr purrr dplyr httr2
 #' @export
 #'
 #' @examples
 #' chat("What is an apple", 0.5, "gpt-3.5-turbo-0613")
+
+is_testing <- function() {
+  identical(Sys.getenv("TESTTHAT"), "true")
+}
+
+set_api_key <- function(key, env_var = "CHATGPT_KEY") {
+
+  if (missing(key)) {
+    key <- askpass::askpass("Please enter your API key")
+  }
+
+  if ("CHATGPT_KEY" %in% env_var) Sys.setenv("CHATGPT_KEY" = key)
+
+}
+
+get_api_key <- function(env_var = "CHATGPT_KEY") {
+
+  if ("CHATGPT_KEY" %in% env_var) key <- Sys.getenv("CHATGPT_KEY")
+
+  if (identical(key, "")){
+
+    if (is_testing()) {
+
+      if ("CHATGPT_KEY" %in% env_var) key <- testing_key_chatgpt()
+
+    } else {
+
+      stop("No API key found. Use set_api_key()")
+
+    }
+
+  }
+
+  key
+
+}
 
 chat <- function(message, temperature, model) {
   user_message <- list(list(role = "user", content = message))
