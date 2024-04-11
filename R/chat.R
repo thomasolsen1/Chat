@@ -13,6 +13,8 @@
 #' @importFrom httr2 request req_url_path_append req_auth_bearer_token req_headers req_user_agent req_body_json req_retry req_throttle req_perform
 #' @importFrom purrr map simplify
 #' @importFrom dplyr bind_rows
+
+
 chat <- function(message, temperature, model) {
   user_message <- list(list(role = "user", content = message))
   base_url <- "https://api.openai.com/v1"
