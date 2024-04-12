@@ -1,28 +1,24 @@
 #' Set API Key
 #'
 #' This function sets the API key for the CHATGPT_KEY environment variable.
-#' If no key is provided and the environment variable is not set, it prompts the user to enter the API key.
-#'
-#' @param key The API key to be set. If not provided, the user will be prompted to enter it.
-#' @param env_var The environment variable to set the API key to. Default is "CHATGPT_KEY".
+#' If the environment variable is not set, it prompts the user to enter the API key.
 #'
 #' @examples
-#' set_api_key("your_api_key_here")
-#' set_api_key("your_api_key_here", "MY_ENV_VAR")
+#' set_api_key()
+#'
+#' @details
+#' The function first checks if the "CHATGPT_KEY" environment variable is set. 
+#' If it is not set, it prompts the user to enter the value for "CHATGPT_KEY" and sets the environment variable to the entered value.
 #'
 #' @importFrom askpass askpass
 #' @importFrom mockery mock
 #'
 #' @export
 
-set_api_key <- function(key = NULL, env_var = "CHATGPT_KEY") {
-  # Check if the environment variable is already set
-  if (is.null(Sys.getenv(env_var, unset = NA))) {
-    # If the key argument is missing, prompt the user to enter it
-    if (is.null(key)) {
-      key <- askpass::askpass("Please enter your API key")
+set_api_key <- function() {
+    if (Sys.getenv("CHATGPT_KEY") == "") {
+        cat("Please enter the value for CHATGPT_KEY:\n")
+        CHATGPT_KEY <- askpass::askpass("Enter CHATGPT_KEY:")
+        Sys.setenv(CHATGPT_KEY = CHATGPT_KEY)
     }
-    # Set the environment variable
-    Sys.setenv(env_var = key)
-  }
 }

@@ -4,19 +4,17 @@
 \alias{set_api_key}
 \title{Set API Key}
 \usage{
-set_api_key(key = NULL, env_var = "CHATGPT_KEY")
-}
-\arguments{
-\item{key}{The API key to be set. If not provided, the user will be prompted to enter it.}
-
-\item{env_var}{The environment variable to set the API key to. Default is "CHATGPT_KEY".}
+set_api_key()
 }
 \description{
 This function sets the API key for the CHATGPT_KEY environment variable.
-If no key is provided and the environment variable is not set, it prompts the user to enter the API key.
+If the environment variable is not set, it prompts the user to enter the API key.
+}
+\details{
+The function first checks if the "CHATGPT_KEY" environment variable is set.
+If it is not set, it prompts the user to enter the value for "CHATGPT_KEY" and sets the environment variable to the entered value.
 }
 \examples{
-set_api_key("your_api_key_here")
-set_api_key("your_api_key_here", "MY_ENV_VAR")
+set_api_key()
 
 }
