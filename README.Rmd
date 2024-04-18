@@ -36,7 +36,7 @@ This is a basic example which shows how to send a prompt to OpenAI's API model:
 library(Chat)
 
 prompt <- "Is this study about a Functional Family Therapy (FFT) intervention?"
-loaded_objects <- load("C:/Users/thoma/Desktop/VIVE/filges2015_dat_modified.rda")
+loaded_objects <- load("./data/filges2015_dat_modified.rda")
 data <- get(loaded_objects)
 chat(data, prompt, 0.5, "gpt-3.5-turbo")
 ```
@@ -49,13 +49,3 @@ The `chat` function is used to make queries to OpenAI's API models. The function
 - `model`: The model of OpenAI's API to use
 
 The function returns a dataframe containing the study title, study ID, and the response from OpenAI's API models.
-
-```{r}
-library(Chat)
-
-prompt <- "Is this study about a Functional Family Therapy (FFT) intervention?"
-loaded_objects <- load("C:/Users/thoma/Desktop/VIVE/filges2015_dat_modified.rda")
-data <- get(loaded_objects)
-result <- chat(data, prompt, 0.5, "gpt-3.5-turbo")
-print(result)
-```
