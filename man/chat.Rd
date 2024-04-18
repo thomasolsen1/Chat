@@ -2,24 +2,31 @@
 % Please edit documentation in R/chat.R
 \name{chat}
 \alias{chat}
-\title{chat}
+\title{Chat with the OpenAI API}
 \usage{
-chat(message, temperature, model)
+chat(data, prompt, temperature, model)
 }
 \arguments{
-\item{message}{The message sent to OpenAI}
+\item{data}{A data frame with the data to be used in the messages. Each row represents a study and should have columns for 'title' and 'abstract'.}
 
-\item{temperature}{The sampling temperature, between 0 and 1. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. If set to 0, the model will use log probability to automatically increase the temperature until certain thresholds are hit. (https://platform.openai.com/docs/api-reference/audio)}
+\item{prompt}{A string to be used as the initial prompt in the messages.}
 
-\item{model}{OpenAI's API models}
+\item{temperature}{A numeric value to control the randomness of the API's responses.}
+
+\item{model}{A string specifying the model to be used by the API.}
 }
 \value{
-A dataframe containing the chosen message, temperature, model and the response from OpenAI's API models
+A data frame with the API's responses. Each row corresponds to a row in the input data and contains the study title, study ID, and the API's response.
 }
 \description{
-chat
+This function sends a series of messages to the OpenAI API and returns the API's responses.
+The messages are generated based on the data provided.
 }
 \examples{
-chat("What is an apple", 0.5, "gpt-3.5-turbo-0613")
 
+prompt <- "Is this study about a Functional Family Therapy (FFT) intervention?"
+
+loaded_objects <- load("C:/Users/thoma/Desktop/VIVE/filges2015_dat_modified.rda")
+data <- get(loaded_objects)
+chat(data, prompt, 0.5, "gpt-3.5-turbo")
 }
