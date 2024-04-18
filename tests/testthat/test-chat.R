@@ -4,11 +4,12 @@ test_that("inclusion_decision_description returns correct string", {
   
   # Define the expected result
   expected_result <- paste0(
-    "If the study should be included for further review, write '1'.",
-    "If the study should be excluded, write '0'.",
-    "If there is not enough information to make a clear decision, write '1.1'.",
-    "If there is no or only a little information in the title and abstract also write '1.1'",
-    "When providing the response only provide the numerical decision."
+    "For the given prompt, the AI should respond as follows:",
+    "\n- If the text confirms the prompt, respond with '1'.",
+    "\n- If the text contradicts the prompt, respond with '0'.",
+    "\n- If the text does not provide enough information to confirm or contradict the prompt, respond with '1.1'.",
+    "\n- This also applies if the title and abstract provide insufficient information.",
+    "\n- The response should only consist of the numerical decision."
   )
   
   # Check that the result is as expected
