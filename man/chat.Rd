@@ -4,7 +4,14 @@
 \alias{chat}
 \title{Chat with the OpenAI API}
 \usage{
-chat(data, prompt, temperature, model)
+chat(
+  data,
+  prompt,
+  temperature,
+  model,
+  functions = incl_function,
+  function_call_name = list(name = "inclusion_decision")
+)
 }
 \arguments{
 \item{data}{A data frame with the data to be used in the messages. Each row represents a study and should have columns for 'title' and 'abstract'.}
@@ -14,6 +21,10 @@ chat(data, prompt, temperature, model)
 \item{temperature}{A numeric value to control the randomness of the API's responses.}
 
 \item{model}{A string specifying the model to be used by the API.}
+
+\item{functions}{A list of functions to be used in the decision-making process. Default is 'incl_function'.}
+
+\item{function_call_name}{A list with the name of the function to be called for making the decision. Default is list(name = "inclusion_decision").}
 }
 \value{
 A data frame with the API's responses. Each row corresponds to a row in the input data and contains the study title, study ID, and the API's response.
@@ -26,7 +37,7 @@ The messages are generated based on the data provided.
 
 prompt <- "Is this study about a Functional Family Therapy (FFT) intervention?"
 
-loaded_objects <- load("C:/Users/thoma/Desktop/VIVE/filges2015_dat_modified.rda")
+loaded_objects <- load("./data/filges2015_dat_modified.rda")
 data <- get(loaded_objects)
-chat(data, prompt, 0.5, "gpt-3.5-turbo")
+chat(data, prompt, 0.5, "gpt-3.5-turbo-0125")
 }
