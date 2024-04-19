@@ -44,21 +44,19 @@ devtools::install_github("<your-repo>")
 
 This is an example of what the output might look like:
 
-```r
-# This code will not run in the markdown document
-# prompt <- "Is this study about a Functional Family Therapy (FFT) intervention?"
-# loaded_objects <- load("./data/filges2015_dat_modified.rda")
-# data <- get(loaded_objects)
-# chat(data, prompt, 0.5, "gpt-3.5-turbo-0125")
+```{r, eval=FALSE}
+prompt <- "Is this study about a Functional Family Therapy (FFT) intervention?"
+loaded_objects <- load("./data/filges2015_dat_modified.rda")
+data <- get(loaded_objects)
+chat(data, prompt, 0.5, "gpt-3.5-turbo-0125")
 
-# Example output:
-# A tibble: 6 × 4
-#   Title                                     StudyID decision_gpt decision_binary
-#   <chr>                                     <chr>   <chr>                  <dbl>
-# 1 Estimating and communicating prognosis i… 1       "No, this s…               0
-# 2 Self-Directed Behavioral Family Interven… 2       "No, this s…               0
-# 3 Frequency domain source localization sho… 3       "No, this s…               0
-# 4 A Review of: 'Kearney, C. A. (2010). Hel… 4       "No, this s…               0
-# 5 Topographic differences in the adolescen… 5       "No, this s…               0
-# 6 BOOK REVIEW                               6       "No, this s…               0
+A tibble: 6 × 4
+   Title                                     StudyID decision_gpt decision_binary
+   <chr>                                     <chr>   <chr>                  <dbl>
+ 1 Estimating and communicating prognosis i… 1       "No, this s…               0
+ 2 Self-Directed Behavioral Family Interven… 2       "No, this s…               0
+ 3 Frequency domain source localization sho… 3       "No, this s…               0
+ 4 A Review of: 'Kearney, C. A. (2010). Hel… 4       "No, this s…               0
+ 5 Topographic differences in the adolescen… 5       "No, this s…               0
+ 6 BOOK REVIEW                               6       "No, this s…               0
 ```
