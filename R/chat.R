@@ -30,12 +30,11 @@
 chat <- function(data, 
   prompt, 
   temperature, 
-  model, 
-  functions = incl_function,
-  function_call_name = list(name = "inclusion_decision")
+  model
   ){
+
   base_url <- "https://api.openai.com/v1"
-  api_key <- Sys.getenv("OPENAI_API_KEY")
+  api_key <- Sys.getenv("CHATGPT_KEY")
   
   # Initialize an empty data frame to store the results
   results <- tibble::tibble(Title = character(), StudyID = character(), decision_gpt = character(), decision_binary = numeric())
@@ -48,10 +47,31 @@ chat <- function(data,
 
     # Create the user message
     user_message <- list(list(role = "user", content = paste0(prompt, " ", study_details)))
+    tools <- list(
+        list(
+          name = "inclusion_decision",
+          description = inclusion_decision_description,
+          parameters = list(
+            type = "object",
+            properties = list(
+              decision_gpt = list(
+                type = "string",
+                items = list(
+                  type = "string",
+                  description = "A string of either '1', '0', or '1.1'"
+                ),
+                description = "List the inclusion decision"
+              )
+            ),
+            required = list("decision_gpt")
+          )
+        )
+      )
 
     # Create the request body
     body <- list(model = model,
                 messages = user_message,
+                tools = tools,
                 temperature = temperature)
 
     # Make the request
@@ -89,26 +109,6 @@ inclusion_decision_description <- paste0(
   "When providing the response only provide the numerical decision."
 )
 
-incl_function <- list(
-  list(
-    name = "inclusion_decision",
-    description = inclusion_decision_description,
-    parameters = list(
-      type = "object",
-      properties = list(
-        decision_gpt = list(
-          type = "string",
-          items = list(
-            type = "string",
-            description = "A string of either '1', '0', or '1.1'"
-          ),
-          description = "List the inclusion decision"
-        )
-      ),
-      required = list("decision_gpt")
-    )
-  )
-)
 
 #################
 # library(usethis); library(roxygen2); library(devtools); library(testthat); library(askpass); library(httr2); library(purrr); library(dplyr); library(magrittr)
