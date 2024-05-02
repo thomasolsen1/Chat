@@ -9,7 +9,7 @@
 #'
 #' @return A tibble with the original study details and the model's response.
 #'
-#' @import dplyr 
+#' @import dplyr
 #' @export
 #' 
 #' @examples
