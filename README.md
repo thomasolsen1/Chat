@@ -1,32 +1,25 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# Chat with the OpenAI API
+# Chat with OpenAI’s GPT-3.5-turbo model
 
-This function sends a series of messages to the OpenAI API and returns
-the API’s responses. The messages are generated based on the data
-provided.
+This function takes a data frame of study details, constructs a prompt
+for each study, and sends it to OpenAI’s GPT-3.5-turbo model for a
+response. The function returns a tibble with the original study details
+and the model’s response.
 
 ## Parameters
 
-- `data`: A data frame with the data to be used in the messages. Each
-  row represents a study and should have columns for ‘title’ and
-  ‘abstract’.
-- `prompt`: A string to be used as the initial prompt in the messages.
-- `temperature`: A numeric value to control the randomness of the API’s
-  responses.
-- `model`: A string specifying the model to be used by the API.
-- `functions`: A list of functions to be used in the decision-making
-  process. Default is ‘incl_function’.
-- `function_call_name`: A list with the name of the function to be
-  called for making the decision. Default is list(name =
-  “inclusion_decision”).
+- `data`: A data frame containing the study details. Each row should
+  represent a study and must have ‘title’ and ‘abstract’ columns.
+- `prompt`: A string that will be prepended to the study details to form
+  the prompt for the model.
+- `model`: A string specifying the model to use. Default is
+  “gpt-3.5-turbo”.
 
 ## Return
 
-A data frame with the API’s responses. Each row corresponds to a row in
-the input data and contains the study title, study ID, and the API’s
-response.
+A tibble with the original study details and the model’s response.
 
 ## Installation
 
@@ -46,15 +39,15 @@ This is an example of what the output might look like:
 prompt <- "Is this study about a Functional Family Therapy (FFT) intervention?"
 loaded_objects <- load("./data/filges2015_dat_modified.rda")
 data <- get(loaded_objects)
-chat(data, prompt, 0.5, "gpt-3.5-turbo-0125")
+chat(data, prompt, model = "gpt-3.5-turbo")
 
-A tibble: 6 × 4
-   Title                                     StudyID decision_gpt decision_binary
-   <chr>                                     <chr>   <chr>                  <dbl>
- 1 Estimating and communicating prognosis i… 1       "No, this s…               0
- 2 Self-Directed Behavioral Family Interven… 2       "No, this s…               0
- 3 Frequency domain source localization sho… 3       "No, this s…               0
- 4 A Review of: 'Kearney, C. A. (2010). Hel… 4       "No, this s…               0
- 5 Topographic differences in the adolescen… 5       "No, this s…               0
- 6 BOOK REVIEW                               6       "No, this s…               0
+A tibble: 6 × 3
+   Title                                     StudyID decision_gpt
+   <chr>                                     <chr>   <chr>       
+ 1 Estimating and communicating prognosis i… 1       "No, this s…
+ 2 Self-Directed Behavioral Family Interven… 2       "No, this s…
+ 3 Frequency domain source localization sho… 3       "No, this s…
+ 4 A Review of: 'Kearney, C. A. (2010). Hel… 4       "No, this s…
+ 5 Topographic differences in the adolescen… 5       "No, this s…
+ 6 BOOK REVIEW                               6       "No, this s…
 ```
