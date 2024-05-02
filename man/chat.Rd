@@ -2,42 +2,29 @@
 % Please edit documentation in R/chat.R
 \name{chat}
 \alias{chat}
-\title{Chat with the OpenAI API}
+\title{Chat with OpenAI's GPT-3.5-turbo model}
 \usage{
-chat(
-  data,
-  prompt,
-  temperature,
-  model,
-  functions = incl_function,
-  function_call_name = list(name = "inclusion_decision")
-)
+chat(data, prompt, model = "gpt-3.5-turbo")
 }
 \arguments{
-\item{data}{A data frame with the data to be used in the messages. Each row represents a study and should have columns for 'title' and 'abstract'.}
+\item{data}{A data frame containing the study details. Each row should represent a study and must have 'title' and 'abstract' columns.}
 
-\item{prompt}{A string to be used as the initial prompt in the messages.}
+\item{prompt}{A string that will be prepended to the study details to form the prompt for the model.}
 
-\item{temperature}{A numeric value to control the randomness of the API's responses.}
-
-\item{model}{A string specifying the model to be used by the API.}
-
-\item{functions}{A list of functions to be used in the decision-making process. Default is 'incl_function'.}
-
-\item{function_call_name}{A list with the name of the function to be called for making the decision. Default is list(name = "inclusion_decision").}
+\item{model}{A string specifying the model to use. Default is "gpt-3.5-turbo".}
 }
 \value{
-A data frame with the API's responses. Each row corresponds to a row in the input data and contains the study title, study ID, and the API's response.
+A tibble with the original study details and the model's response.
 }
 \description{
-This function sends a series of messages to the OpenAI API and returns the API's responses.
-The messages are generated based on the data provided.
+This function takes a data frame of study details, constructs a prompt for each study, and sends it to OpenAI's GPT-3.5-turbo model for a response.
+The function returns a tibble with the original study details and the model's response.
 }
 \examples{
-
+\dontrun{
 prompt <- "Is this study about a Functional Family Therapy (FFT) intervention?"
-
 loaded_objects <- load("./data/filges2015_dat_modified.rda")
 data <- get(loaded_objects)
-chat(data, prompt, 0.5, "gpt-3.5-turbo-0125")
+chat(data, prompt)
+}
 }
