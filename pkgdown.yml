@@ -1,0 +1,9 @@
+pandoc: 3.1.11
+pkgdown: 2.0.9
+pkgdown_sha: ~
+articles: {}
+last_built: 2024-05-03T12:09Z
+urls:
+  reference: https://thomasolsen1.github.io/Chat/reference
+  article: https://thomasolsen1.github.io/Chat/articles
+
