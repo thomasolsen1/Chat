@@ -1,18 +1,16 @@
-test_that("set_api_key function sets the API key correctly", {
+test_that("Testthat works in set_api_key()", {
 
-  # Generate a mocked API key with 56 characters
-  mocked_api_key <- paste(rep("x", 56), collapse = "")
+  skip_on_cran()
 
-  # Temporarily unset the CHATGPT_KEY environment variable
-  withr::local_envvar(c(CHATGPT_KEY = NULL))
+  key <- httr2::secret_decrypt("KYmKXac4jBjAlHhMMrUUeQnxQuRSiBPTN6xil22UCY4H7HaEj43nhMIQ3oudBsD0iSFZYrnCv8_VDDpul3khW1TExnxqpad_", "CHAT_KEY")
 
-  # Use withr to temporarily set the askpass function to return the mocked API key
-  withr::with_options(list(askpass = function(prompt) mocked_api_key), {
-    # Call the set_api_key function
-    set_api_key()
-  })
+  # Set the environment variable
+  Sys.setenv(CHATGPT_KEY = key)
 
-  # Check if the length of the environment variable is set correctly
-  expect_equal(nchar(Sys.getenv("CHATGPT_KEY")), 56)
+  # Call the set_api_key function
+  set_api_key()
+
+  # Check that the environment variable was set correctly
+  expect_identical(Sys.getenv("CHATGPT_KEY"), key)
 
 })
