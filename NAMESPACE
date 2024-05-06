@@ -3,5 +3,3 @@
 export(chat)
 export(set_api_key)
 import(dplyr)
-importFrom(askpass,askpass)
-importFrom(mockery,mock)

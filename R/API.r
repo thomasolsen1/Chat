@@ -10,8 +10,6 @@
 #' The function first checks if the "CHATGPT_KEY" environment variable is set. 
 #' If it is not set, it prompts the user to enter the value for "CHATGPT_KEY" and sets the environment variable to the entered value.
 #'
-#' @importFrom askpass askpass
-#' @importFrom mockery mock
 #'
 #' @export
 
