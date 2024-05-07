@@ -1,0 +1,68 @@
+---
+title: "Vignette for chat and set_api_key functions"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette for chat and set_api_key functions}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(Chat)
+```
+
+# Screen titles and abstracts with OpenAI’s GPT models
+
+This function takes a data frame of study details, constructs a prompt
+for each study, and sends it to OpenAI’s GPT-3.5-turbo model, as
+default, for a response. The function returns a tibble with the original
+study details and the model’s response.
+
+## Parameters
+
+- `data`: A data frame containing the study details. Each row should represent a study and must have 'title' and 'abstract' columns.
+- `prompt`: A string that will be prepended to the study details to form the prompt for the model.
+- `model`: A string specifying the model to use. Default is "gpt-3.5-turbo".
+
+## Returns
+
+A tibble with the original study details and the model's response.
+
+## Example
+
+```{r, eval = FALSE}
+prompt <- "Is this study about a Functional Family Therapy (FFT) intervention?"
+loaded_objects <- load("./data/filges2015_dat_modified.rda")
+data <- get(loaded_objects)
+chat(data, prompt, model = "gpt-3.5-turbo")
+```
+
+# Output
+```{r, eval = FALSE}
+A tibble: 6 × 3
+   Title                                     StudyID decision_gpt
+   <chr>                                     <chr>   <chr>       
+ 1 Estimating and communicating prognosis i… 1       "No, this s…
+ 2 Self-Directed Behavioral Family Interven… 2       "No, this s…
+ 3 Frequency domain source localization sho… 3       "No, this s…
+ 4 A Review of: 'Kearney, C. A. (2010). Hel… 4       "No, this s…
+ 5 Topographic differences in the adolescen… 5       "No, this s…
+ 6 BOOK REVIEW                               6       "No, this s…
+```
+
+# Set API Key
+
+This function sets the API key for the CHATGPT_KEY environment variable.
+If the environment variable is not set, it prompts the user to enter the API key.
+
+## Details
+
+The function first checks if the "CHATGPT_KEY" environment variable is set. 
+If it is not set, it prompts the user to enter the value for "CHATGPT_KEY" and sets the environment variable to the entered value.
