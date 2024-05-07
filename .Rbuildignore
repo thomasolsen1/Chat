@@ -6,4 +6,4 @@
 ^docs$
 ^pkgdown$
 ^\.github$
-^\other$
+^\other/
