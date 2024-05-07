@@ -1,12 +1,12 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# Chat with OpenAI’s GPT-3.5-turbo model
+# Screen titles and abstracts with OpenAI’s GPT models
 
 This function takes a data frame of study details, constructs a prompt
-for each study, and sends it to OpenAI’s GPT-3.5-turbo model for a
-response. The function returns a tibble with the original study details
-and the model’s response.
+for each study, and sends it to OpenAI’s GPT-3.5-turbo model, as
+default, for a response. The function returns a tibble with the original
+study details and the model’s response.
 
 ## Parameters
 
