@@ -28,7 +28,7 @@ You can install the development version of Chat from
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("<your-repo>")
+devtools::install_github("thomasolsen1/Chat")
 ```
 
 ## Example
