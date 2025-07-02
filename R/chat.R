@@ -1,4 +1,4 @@
-#' Chat with OpenAI's GPT-3.5-turbo model HEJ MED DIG
+#' Chat with OpenAI's GPT-3.5-turbo model HEJ MED DIG IGEN IGEN
 #'
 #' This function takes a data frame of study details, constructs a prompt for each study, and sends it to OpenAI's GPT-3.5-turbo model for a response.
 #' The function returns a tibble with the original study details and the model's response.
