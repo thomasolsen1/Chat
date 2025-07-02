@@ -1,9 +1,9 @@
 pandoc: 3.1.11
-pkgdown: 2.1.1
+pkgdown: 2.1.3
 pkgdown_sha: ~
 articles:
   my-vignette: my-vignette.html
-last_built: 2025-02-17T08:46Z
+last_built: 2025-07-02T10:19Z
 urls:
   reference: https://thomasolsen1.github.io/Chat/reference
   article: https://thomasolsen1.github.io/Chat/articles
