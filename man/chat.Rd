@@ -2,7 +2,7 @@
 % Please edit documentation in R/chat.R
 \name{chat}
 \alias{chat}
-\title{Chat with OpenAI's GPT-3.5-turbo model}
+\title{Chat with OpenAI's GPT-3.5-turbo model HEJ MED DIG}
 \usage{
 chat(data, prompt, model = "gpt-3.5-turbo")
 }
